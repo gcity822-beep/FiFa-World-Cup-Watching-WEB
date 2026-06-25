@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Football Streaming - FIFA 2026</title>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .video-js {
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
+
+    <header class="bg-gray-800 py-4 px-6 shadow-md border-b border-gray-700 text-center">
+        <h1 class="text-2xl md:text-3xl font-bold text-green-500 tracking-wide">⚽ FIFA LIVE STREAMING</h1>
+    </header>
+
+    <div id="ad-locker" class="fixed inset-0 bg-gray-950 bg-opacity-95 z-50 flex flex-col justify-center items-center p-4 overflow-y-auto">
+        <div class="bg-gray-800 p-5 md:p-8 rounded-xl max-w-md w-full text-center border border-gray-700 shadow-2xl my-auto">
+            
+            <div class="relative overflow-hidden rounded-lg mb-6 bg-gradient-to-r from-blue-900 via-indigo-950 to-purple-900 border border-indigo-500/30 p-6 shadow-inner text-center">
+                <div class="absolute inset-0 bg-opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30"></div>
+                <div class="relative z-10">
+                    <span class="bg-green-500 text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-widest text-gray-900 animate-pulse">Live & Free</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-white to-yellow-200 mt-2 tracking-tight">
+                        FIFA WORLD CUP
+                    </h2>
+                    <div class="text-3xl md:text-4xl font-black text-white tracking-widest mt-1 drop-shadow-md">
+                        2026
+                    </div>
+                    <p class="text-xs text-indigo-200 mt-2 tracking-wide uppercase font-semibold">Stream Servers Are Ready</p>
+                </div>
+            </div>
+
+            <div class="text-4xl mb-3">🔒</div>
+            <h3 class="text-xl font-bold mb-2 text-gray-100">Access Locked</h3>
+            <p class="text-gray-400 mb-6 text-sm">Click the button below and wait <span class="text-green-500 font-bold">15 seconds</span> on that page, then come back here to unlock the player!</p>
+            
+            <a href="https://www.effectivecpmnetwork.com/jqrr2xwf?key=d2f865457fa9f1c82f8edde16df48224" 
+               target="_blank" 
+               id="unlock-btn" 
+               class="inline-block w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3.5 px-6 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg text-base tracking-wide">
+                🚀 Click Here to Unlock
+            </a>
+
+            <div id="countdown-container" class="hidden mt-4 bg-gray-900/50 py-2 rounded-lg border border-gray-700/50">
+                <p class="text-sm text-gray-400">Verifying access in: <span id="timer" class="text-green-500 font-bold text-lg">15</span>s</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow container mx-auto px-4 py-6 flex flex-col lg:flex-row gap-6">
+        
+        <div class="w-full lg:w-3/4 flex flex-col gap-4">
+            
+            <div class="aspect-video bg-black rounded-xl overflow-hidden shadow-lg border border-gray-800 relative">
+                <video id="live-player" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" data-setup='{}'>
+                    <source src="https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8" type="application/x-mpegURL">
+                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video</p>
+                </video>
+            </div>
+
+            <div class="bg-gray-800 p-4 rounded-xl border border-gray-700">
+                <h3 class="text-sm uppercase font-semibold text-gray-400 mb-3 tracking-wider">Select Server / Channel</h3>
+                <div class="grid grid-cols-3 gap-3">
+                    <button onclick="changeChannel('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', this)" class="channel-btn bg-green-600 hover:bg-green-500 text-white font-semibold py-2.5 px-4 rounded-lg text-sm md:text-base transition border-2 border-transparent active-channel">
+                        Bein Sports
+                    </button>
+                    <button onclick="changeChannel('https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8', this)" class="channel-btn bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg text-sm md:text-base transition border-2 border-transparent">
+                        Win Sports
+                    </button>
+                    <button onclick="changeChannel('https://1nyaler.streamhostingcdn.top/stream/30/index.m3u8', this)" class="channel-btn bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2.5 px-4 rounded-lg text-sm md:text-base transition border-2 border-transparent">
+                        TNT Sports
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full bg-gray-800 border border-dashed border-gray-600 rounded-xl p-4 flex items-center justify-center text-gray-500 h-24">
+                <span class="text-xs md:text-sm font-mono">[ PLACEHOLDER: Responsive Banner Ad (728x90 / 468x60) ]</span>
+            </div>
+
+        </div>
+
+        <div class="w-full lg:w-1/4 flex flex-col gap-4">
+            
+            <div class="bg-gray-800 border border-dashed border-gray-600 rounded-xl p-4 flex items-center justify-center text-gray-500 h-64 lg:h-80">
+                <span class="text-xs md:text-sm font-mono">[ PLACEHOLDER: Sidebar Ad (300x250) ]</span>
+            </div>
+
+            <div class="bg-gray-800 border border-dashed border-gray-600 rounded-xl p-4 flex items-center justify-center text-gray-500 h-64 lg:h-80">
+                <span class="text-xs md:text-sm font-mono">[ PLACEHOLDER: Sidebar Ad (300x250) ]</span>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-900 py-4 text-center text-xs text-gray-500 border-t border-gray-800">
+        &copy; 2026 Live Football Streaming. All rights reserved.
+    </footer>
+
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
+    <script>
+        // Initialize Video.js player
+        const player = videojs('live-player');
+
+        const unlockBtn = document.getElementById('unlock-btn');
+        const countdownContainer = document.getElementById('countdown-container');
+        const timerEl = document.getElementById('timer');
+        const adLocker = document.getElementById('ad-locker');
+
+        let countdown;
+        let timeLeft = 15;
+
+        // Trigger countdown when user clicks the unlock button (Adsterra link)
+        unlockBtn.addEventListener('click', () => {
+            if (countdownContainer.classList.contains('hidden')) {
+                countdownContainer.classList.remove('hidden');
+                
+                countdown = setInterval(() => {
+                    timeLeft--;
+                    timerEl.textContent = timeLeft;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        // Hide the locker and reveal the website content
+                        adLocker.style.display = 'none';
+                        // Auto play video after unlock
+                        player.play().catch(error => {
+                            console.log("Autoplay prevented by browser, waiting for user interaction.");
+                        });
+                    }
+                }, 1000);
+            }
+        });
+
+        // Channel Switcher Logic
+        function changeChannel(streamUrl, buttonElement) {
+            // Update video source
+            player.src({
+                src: streamUrl,
+                type: 'application/x-mpegURL'
+            });
+            player.play();
+
+            // Update Active Button Styles
+            document.querySelectorAll('.channel-btn').forEach(btn => {
+                btn.classList.remove('bg-green-600', 'hover:bg-green-500', 'active-channel');
+                btn.classList.add('bg-gray-700', 'hover:bg-gray-600');
+            });
+
+            buttonElement.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+            buttonElement.classList.add('bg-green-600', 'hover:bg-green-500', 'active-channel');
+        }
+    </script>
+</body>
+</html>
